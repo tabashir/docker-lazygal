@@ -49,9 +49,9 @@ python-numpy && \
 wget -P /tmp --no-check-certificate http://www.thregr.org/~wavexx/software/fgallery/releases/fgallery-LATEST.zip && \
 cd /opt && \
 unzip /tmp/fgallery-LATEST.zip && \
-mv fgallery-* fgallery && \
+for fgal in fgallery-*; do mv "$fgal" "${fgal%-*}"; done && \
+ln -t /usr/bin /opt/fgallery/fgallery && \
 
-wget --no-check-certificate https://github.com/wavexx/facedetect/archive/master.zip && \
-unzip -p master.zip facedetect-master/facedetect > /usr/bin/facedetect && \
-chmod +x /usr/bin/facedetect
-
+wget -P /tmp --no-check-certificate https://github.com/wavexx/facedetect/archive/master.zip && \
+unzip -p /tmp/master.zip facedetect-master/facedetect > /usr/bin/facedetect && \
+chmod +x /usr/bin/facedetect &&
