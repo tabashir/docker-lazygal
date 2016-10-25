@@ -20,5 +20,5 @@ RUN apt-get update -y -q && \
             python \
             python-opencv \
             libopencv-dev && \
-    auto_install=`apt-mark showauto` \ &&
+    auto_install=`apt-mark showauto`  && \
     apt-get remove --purge -y ${auto_install}
