@@ -26,8 +26,8 @@ rm -rf /etc/service/sshd /etc/my_init.d/00_regen_ssh_host_keys.sh && \
 
 # Install fgallery
 
-apt-get -y update -q && \
-apt-get install \
+apt-get --yes --force-yes update -q && \
+apt-get install --yes --force-yes \
 imagemagick \
 exiftran \
 zip \
@@ -44,7 +44,7 @@ unp \
 unzip \
 fish \
 wget 
-python-numpy -y && \
+python-numpy && \
 
 wget -P /tmp --no-check-certificate http://www.thregr.org/~wavexx/software/fgallery/releases/fgallery-LATEST.zip && \
 cd /opt && \
