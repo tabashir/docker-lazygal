@@ -6,7 +6,7 @@ ENV DEBIAN_FRONTEND noninteractive
 ENV HOME /root
 
 #Expose Volumes
-VOLUME ["/opt/"]
+VOLUME ["/opt/gallery/"]
 WORKDIR /opt/
 
 # Expose Port
