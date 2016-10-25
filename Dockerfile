@@ -1,6 +1,7 @@
 FROM debian:stretch
 MAINTAINER rasmus
 ENV DEBIAN_FRONTEND noninteractive
+ENV LC_ALL C.UTF-8
 
 RUN apt-get --yes --force-yes update -q && \
     apt-get install --yes --force-yes \
@@ -22,9 +23,3 @@ RUN apt-get --yes --force-yes update -q && \
             wget \
             python-numpy && \
     apt-get clean
-
-RUN dpkg-reconfigure locales && \
-    locale-gen C.UTF-8 && \
-    /usr/sbin/update-locale LANG=C.UTF-8
-
-ENV LC_ALL C.UTF-8
