@@ -19,6 +19,6 @@ RUN apt-get update -y -q && \
             facedetect \
             python \
             python-opencv \
-            libopencv-dev && \
-    auto_install=`apt-mark showauto`  && \
-    apt-get remove --purge -y ${auto_install}
+            libopencv-dev # && \
+    # auto_install=`apt-mark showauto`  && \
+    # apt-get remove --purge -y ${auto_install}
