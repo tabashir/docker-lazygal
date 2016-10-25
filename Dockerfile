@@ -6,8 +6,8 @@ ENV DEBIAN_FRONTEND noninteractive
 ENV HOME /root
 
 #Expose Volumes
-VOLUME ["/opt/fgallery/gallery/"]
-WORKDIR /opt/fgallery/
+VOLUME ["/opt/"]
+WORKDIR /opt/
 
 # Expose Port
 EXPOSE 8000
@@ -50,7 +50,7 @@ wget -P /tmp --no-check-certificate http://www.thregr.org/~wavexx/software/fgall
 cd /opt && \
 unzip /tmp/fgallery-LATEST.zip && \
 for fgal in fgallery-*; do mv "$fgal" "${fgal%-*}"; done && \
-# ln -t /usr/bin /opt/fgallery/fgallery && \
+ln -t /usr/bin /opt/fgallery/fgallery && \
 
 wget -P /tmp --no-check-certificate https://github.com/wavexx/facedetect/archive/master.zip && \
 unzip -p /tmp/master.zip facedetect-master/facedetect > /usr/bin/facedetect && \
