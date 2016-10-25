@@ -43,7 +43,7 @@ libopencv-dev \
 unp \
 unzip \
 fish \
-wget 
+wget \
 python-numpy && \
 
 wget -P /tmp --no-check-certificate http://www.thregr.org/~wavexx/software/fgallery/releases/fgallery-LATEST.zip && \
