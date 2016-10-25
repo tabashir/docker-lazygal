@@ -6,7 +6,6 @@ ENV LC_ALL C.UTF-8
 RUN apt-get update -y -q && \
     apt-get install -y -q \
             fgallery \
-            facedetect
             imagemagick \
             exiftran \
             zip \
@@ -19,6 +18,6 @@ RUN apt-get update -y -q && \
             facedetect \
             python \
             python-opencv \
-            libopencv-dev # && \
-    # auto_install=`apt-mark showauto`  && \
-    # apt-get remove --purge -y ${auto_install}
+            libopencv-dev && \
+    auto_install=`apt-mark showauto`  && \
+    apt-get remove --purge -y ${auto_install}
