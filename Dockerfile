@@ -4,7 +4,7 @@ ENV DEBIAN_FRONTEND noninteractive
 ENV LC_ALL C.UTF-8
 
 RUN apt-get update -y -q && \
-    apt-get install -y -q \
+    apt-get install -y -q --no-install-recommends \
             fgallery \
             imagemagick \
             exiftran \
@@ -19,5 +19,5 @@ RUN apt-get update -y -q && \
             python \
             python-opencv \
             libopencv-dev && \
-    auto_install=`apt-mark showauto`  && \
-    apt-get remove --purge -y ${auto_install}
+    apt-get autoremove -y && \
+    rm -rf /var/lib/apt/lists/*
