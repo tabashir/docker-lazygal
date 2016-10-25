@@ -15,9 +15,10 @@ RUN apt-get update -y -q && \
             jpegoptim \
             pngcrush \
             p7zip \
-            facedetect \
-            python \
-            python-opencv \
-            libopencv-dev && \
+            # facedetect \ # this pulls in all sorts of Xorg crap...
+            # python \
+            # python-opencv \
+            # libopencv-dev \
+    && \
     apt-get autoremove -y && \
     rm -rf /var/lib/apt/lists/*
