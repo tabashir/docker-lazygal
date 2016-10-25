@@ -54,4 +54,4 @@ ln -t /usr/bin /opt/fgallery/fgallery && \
 
 wget -P /tmp --no-check-certificate https://github.com/wavexx/facedetect/archive/master.zip && \
 unzip -p /tmp/master.zip facedetect-master/facedetect > /usr/bin/facedetect && \
-chmod +x /usr/bin/facedetect &&
+chmod +x /usr/bin/facedetect
