@@ -28,7 +28,7 @@ RUN apt-get update -y -q && \
             libjpeg-dev \
             libpng-dev \
             libtiff-dev \
-            libjasper-dev \ # not available in stretch?
+            libjasper-dev \
             build-essential \
             cmake \
             git \
