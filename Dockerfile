@@ -21,6 +21,7 @@ RUN apt-get update -y -q && \
             pngcrush \
             p7zip && \
     apt-get install -y -q --no-install-recommends \
+            python \
             python-dev \
             python-numpy \
             libtbb2 \
@@ -31,6 +32,7 @@ RUN apt-get update -y -q && \
             libjasper-dev \
             build-essential \
             cmake \
+            libc6 \
             git \
             wget \
             unzip \
@@ -50,9 +52,8 @@ RUN apt-get update -y -q && \
     unzip -q -p master.zip facedetect-master/facedetect > /usr/bin/facedetect && \
     chmod +x /usr/bin/facedetect && \
     rm master.zip && \
-    apt-get -y -qq purge build-essential cmake git wget unzip && \
+    apt-get -y -qq --auto-remove purge build-essential cmake git wget unzip python-dev libc6-dev && \
     apt-get -y -qq clean all && \
     apt-get -y -qq autoremove && \
     rm -rf /var/lib/apt/lists/* && \
     rm -rf /usr/share/{doc,locale,man}
-
