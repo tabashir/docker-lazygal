@@ -28,8 +28,6 @@ RUN use_facedetect="1" && \
                 python-dev \
                 python-numpy \
                 libpython2.7 \
-                libtbb2 \
-                libtbb-dev \
                 libjpeg-dev \
                 libpng-dev \
                 libtiff-dev \
