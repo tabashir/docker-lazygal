@@ -48,6 +48,7 @@ RUN use_facedetect="1" && \
             cd opencv-"$cv_version"/cmake_binary && \
             cmake -DENABLE_PRECOMPILED_HEADERS=OFF -D WITH_CUDA=OFF -D CMAKE_INSTALL_PREFIX=/usr/ .. && \
             make install && \
+            mv /usr/share/{OpenCV,opencv} && \
             cd /tmp/ && \
             rm "$cv_version".zip && \
             rm -r opencv-"$cv_version" && \
