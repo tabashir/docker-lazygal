@@ -3,10 +3,10 @@ MAINTAINER rasmus
 ENV DEBIAN_FRONTEND noninteractive
 ENV LC_ALL C.UTF-8
 
-## Install fgallery from the Debian repo.  It's available from Stretch.
+## Install fgallery from the Debian repo.  It's available in Stretch.
 
 ## Facedetect depends on opencv.  The default Debian package pulls in
-## Xorg dependencies.  Built a light opencv to support facedetect.
+## Xorg dependencies.  Built lighter opencv to support facedetect.
 
 RUN apt-get update -y -q && \
     apt-get install -y -q --no-install-recommends \
@@ -20,9 +20,6 @@ RUN apt-get update -y -q && \
             jpegoptim \
             pngcrush \
             p7zip && \
-    # facedetect \
-    # python-opencv \
-    # libopencv-dev \
     apt-get install -y -q --no-install-recommends \
             python-dev \
             python-numpy \

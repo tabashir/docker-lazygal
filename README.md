@@ -18,3 +18,11 @@ To use this image, just do:
 
 That will mount "mountpath" in the container and allow you to run fgallery on it. Just move the output directory to
 mountpath when done, and you'll have the resulting gallery ready to use.
+
+Initially based on
+the [image](https://github.com/skorokithakis/docker-fgallery) by
+skorokithakis. 
+
+I use it to create galleries
+via [Gitlab Pages](https://gitlab.com/pank/sample-fgallery).  Thus, I
+have tried to minimize the size (I welcome tips to make it smaller).
