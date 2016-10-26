@@ -1,4 +1,4 @@
-FROM debian:stretch
+FROM debian:sid
 MAINTAINER rasmus
 ENV DEBIAN_FRONTEND noninteractive
 ENV LC_ALL C.UTF-8
@@ -28,7 +28,7 @@ RUN apt-get update -y -q && \
             libjpeg-dev \
             libpng-dev \
             libtiff-dev \
-            libjasper-dev \
+            libjasper-dev \ # not available in stretch?
             build-essential \
             cmake \
             git \
@@ -37,7 +37,7 @@ RUN apt-get update -y -q && \
             pkg-config && \
     cd /tmp/ && \
     cv_version='3.1.0' && \
-    wget https://github.com/Itseez/opencv/archive/"$cv_version".zip && \
+    wget -q --no-check-certificate https://github.com/Itseez/opencv/archive/"$cv_version".zip && \
     unzip -q "$cv_version".zip && \
     mkdir opencv-"$cv_version"/cmake_binary && \
     cd opencv-"$cv_version"/cmake_binary && \
@@ -46,7 +46,7 @@ RUN apt-get update -y -q && \
     cd /tmp/ && \
     rm "$cv_version".zip && \
     rm -r opencv-"$cv_version" && \
-    wget https://github.com/wavexx/facedetect/archive/master.zip && \
+    wget -q --no-check-certificate https://github.com/wavexx/facedetect/archive/master.zip && \
     unzip -q -p master.zip facedetect-master/facedetect > /usr/bin/facedetect && \
     chmod +x /usr/bin/facedetect && \
     rm master.zip && \
