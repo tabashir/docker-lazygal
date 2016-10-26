@@ -8,7 +8,7 @@ ENV LC_ALL C.UTF-8
 ## Facedetect depends on opencv.  The default Debian package pulls in
 ## Xorg dependencies.  Built lighter opencv to support facedetect.
 
-RUN use_facedetect=1 && \
+RUN use_facedetect="1" && \
     cv_version='3.1.0' && \
     apt-get update -y -q && \
     apt-get install -y -q --no-install-recommends \
@@ -22,7 +22,7 @@ RUN use_facedetect=1 && \
             jpegoptim \
             pngcrush \
             p7zip && \
-    if [ use_facedetect -ge 0 ]; then \
+    if [ "$use_facedetect" -ge 0 ]; then \
         apt-get install -y -q --no-install-recommends \
                 python \
                 python-dev \
