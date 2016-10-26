@@ -44,9 +44,9 @@ RUN use_facedetect="1" && \
             unzip -q "$cv_version".zip && \
             mkdir opencv-"$cv_version"/cmake_binary && \
             cd opencv-"$cv_version"/cmake_binary && \
-            cmake -DENABLE_PRECOMPILED_HEADERS=OFF -D WITH_CUDA=OFF -D CMAKE_INSTALL_PREFIX=/usr/ .. && \
+            cmake -DENABLE_PRECOMPILED_HEADERS=OFF -D CMAKE_INSTALL_PREFIX=/usr/ .. && \
             make install && \
-            mv /usr/share/{OpenCV,opencv} && \
+            mv /usr/share/OpenCV /usr/share/opencv && \
             cd /tmp/ && \
             rm "$cv_version".zip && \
             rm -r opencv-"$cv_version" && \
@@ -60,6 +60,3 @@ RUN use_facedetect="1" && \
     apt-get -y -qq autoremove && \
     rm -rf /var/lib/apt/lists/* && \
     rm -rf /usr/share/{doc,locale,man}
-
-
-
