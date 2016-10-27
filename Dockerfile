@@ -1,7 +1,7 @@
 FROM debian:sid
 MAINTAINER rasmus
-ENV DEBIAN_FRONTEND noninteractive
-ENV LC_ALL C.UTF-8
+ENV DEBIAN_FRONTEND=noninteractive LC_ALL=C.UTF-8 \
+    use_facedetect=1 use_git_annex=1 cv_version="3.1.0"
 
 ## Install fgallery from the Debian repo.  It's available in Stretch.
 
@@ -10,9 +10,7 @@ ENV LC_ALL C.UTF-8
 
 ## I've included git-annex, which is not strictly necessary....
 
-RUN use_facedetect="1" && \
-    cv_version='3.1.0' && \
-    apt-get update -y -q && \
+RUN apt-get update -y -q && \
     apt-get install -y -qq --no-install-recommends \
             git-annex \
             fgallery \
@@ -25,7 +23,7 @@ RUN use_facedetect="1" && \
             jpegoptim \
             pngcrush \
             p7zip && \
-    if [ "$use_facedetect" -ge 0 ]; then \
+    if [ "$use_facedetect" -ge 1 ]; then \
         apt-get install -y -qq --no-install-recommends \
                 python \
                 python-dev \
@@ -62,12 +60,17 @@ RUN use_facedetect="1" && \
             unzip -q -p master.zip facedetect-master/facedetect > /usr/bin/facedetect && \
             chmod +x /usr/bin/facedetect && \
             rm master.zip && \
-            apt-get -y -qq purge build-essential cmake git wget unzip python-dev libc6-dev \
-        ; fi;  \
+            apt-get -y -qq purge build-essential cmake git wget unzip python-dev libc6-dev ; \
+    fi;  \
+    if [ "$use_git_annex" -ge 1 ]; then \
+        echo use_git_annex! && \
+        apt-get install -y -qq --no-install-recommends git-annex ; \
+    fi;  \
     apt-get -y -qq clean all && \
     apt-get -y -qq autoremove && \
     rm -rf /var/lib/apt/lists/* && \
     rm -rf /usr/share/doc && \ 
     rm -rf /usr/share/locale && \
     rm -rf /usr/share/man && \
-    rm -rf /include        
+    rm -rf /include      
+
