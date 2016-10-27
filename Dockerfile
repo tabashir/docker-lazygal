@@ -11,7 +11,7 @@ ENV LC_ALL C.UTF-8
 RUN use_facedetect="1" && \
     cv_version='3.1.0' && \
     apt-get update -y -q && \
-    apt-get install -y -q --no-install-recommends \
+    apt-get install -y -qq --no-install-recommends \
             fgallery \
             imagemagick \
             exiftran \
@@ -23,7 +23,7 @@ RUN use_facedetect="1" && \
             pngcrush \
             p7zip && \
     if [ "$use_facedetect" -ge 0 ]; then \
-        apt-get install -y -q --no-install-recommends \
+        apt-get install -y -qq --no-install-recommends \
                 python \
                 python-dev \
                 python-numpy \
@@ -44,19 +44,27 @@ RUN use_facedetect="1" && \
             unzip -q "$cv_version".zip && \
             mkdir opencv-"$cv_version"/cmake_binary && \
             cd opencv-"$cv_version"/cmake_binary && \
-            cmake -DENABLE_PRECOMPILED_HEADERS=OFF -D CMAKE_INSTALL_PREFIX=/usr/ .. && \
+            cmake -DENABLE_PRECOMPILED_HEADERS=OFF \
+                  -D CMAKE_INSTALL_PREFIX=/usr/  -D CMAKE_BUILD_TYPE=MINSIZEREL \
+                  -D BUILD_DOCS=ON -D BUILD_TESTS=OFF -D BUILD_PERF_TESTS=OFF -D BUILD_EXAMPLES=OFF -D WITH_OPENCL=OFF -D WITH_V4L=OFF \
+                  -D BUILD_WITH_DEBUG_INFO=OFF -D BUILD_opencv_apps=OFF -D WITH_IPP=OFF  \
+                  -D BUILD_opencv_video=OFF -D BUILD_opencv_videoio=OFF -D BUILD_opencv_calib3d=OFF -D BUILD_opencv_highgui=OFF -D BUILD_opencv_calib3d=OFF -D BUILD_opencv_ts=OFF \
+                  .. && \
             make install && \
             mv /usr/share/OpenCV /usr/share/opencv && \
+            rm "/tmp/$cv_version".zip && \
+            rm -r /tmp/opencv-"$cv_version" && \
             cd /tmp/ && \
-            rm "$cv_version".zip && \
-            rm -r opencv-"$cv_version" && \
             wget -q --no-check-certificate https://github.com/wavexx/facedetect/archive/master.zip && \
             unzip -q -p master.zip facedetect-master/facedetect > /usr/bin/facedetect && \
             chmod +x /usr/bin/facedetect && \
             rm master.zip && \
-            apt-get -y -qq --auto-remove purge build-essential cmake git wget unzip python-dev libc6-dev; \
-    fi;  \
+            apt-get -y -qq purge build-essential cmake git wget unzip python-dev libc6-dev \
+        ; fi;  \
     apt-get -y -qq clean all && \
     apt-get -y -qq autoremove && \
     rm -rf /var/lib/apt/lists/* && \
-    rm -rf /usr/share/{doc,locale,man}
+    rm -rf /usr/share/doc && \ 
+    rm -rf /usr/share/locale && \
+    rm -rf /usr/share/man && \
+    rm -rf /include        
