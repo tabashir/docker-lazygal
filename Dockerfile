@@ -8,10 +8,13 @@ ENV LC_ALL C.UTF-8
 ## Facedetect depends on opencv.  The default Debian package pulls in
 ## Xorg dependencies.  Built lighter opencv to support facedetect.
 
+## I've included git-annex, which is not strictly necessary....
+
 RUN use_facedetect="1" && \
     cv_version='3.1.0' && \
     apt-get update -y -q && \
     apt-get install -y -qq --no-install-recommends \
+            git-annex \
             fgallery \
             imagemagick \
             exiftran \
