@@ -1,7 +1,7 @@
 web:
   image: nginx
   volumes:
-	 - ../images/website:/usr/share/nginx/html:ro
+	 - ../website:/usr/share/nginx/html:ro
   ports:
    - "50090:80"
   environment:
