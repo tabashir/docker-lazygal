@@ -15,6 +15,7 @@ RUN wget --no-check-certificate https://github.com/wavexx/facedetect/archive/mas
 RUN unzip -p master.zip facedetect-master/facedetect > /usr/bin/facedetect
 RUN chmod +x /usr/bin/facedetect
 
-ADD run_conversion.sh /fgallery/
+ADD run_conversion.sh /fgallery/run_conversion.sh
+RUN chmod +x /fgallery/run_conversion.sh
 
-CMD [ "/fgallery/run_conversion.sh" ]
+CMD ["/fgallery/run_conversion.sh" ]
