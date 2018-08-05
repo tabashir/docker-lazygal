@@ -17,7 +17,7 @@ To use this image:
 * copy your images folder into there as a subfolder called 'photos' (case sensitive)
 * run:
     docker build -t fgallery-builder .
-    docker run -i -v <mountpath>:/fgallery/gallery/ -t gallery-builder
+    docker run -i -v <mountpath>:/fgallery/gallery/ -t fgallery-builder
 
 That will mount "mountpath" in the container and run the conversion script against the photos subfolder
 
