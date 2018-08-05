@@ -6,15 +6,19 @@ A Dockerfile for installing fgallery.
 fgallery is a static image gallery generation script, it takes images from a directory and generates a static HTML page
 with the images displayed in a slideshow. It can be found at:
 
-http://www.thregr.org/~wavexx/software/fgallery/
+Forked from: http://www.thregr.org/~wavexx/software/fgallery/
 
 Usage
 -----
 
-To use this image, just do:
+To use this image:
 
-    docker build -t stavrosk/fgallery .
-    docker run -i -v <mountpath>:/fgallery/gallery/ -t stavrosk/fgallery
+* create a folder (we'll refer to it as 'mountpath')
+* copy your images folder into there as a subfolder called 'photos' (case sensitive)
+* run:
+    docker build -t fgallery-builder .
+    docker run -i -v <mountpath>:/fgallery/gallery/ -t gallery-builder
 
-That will mount "mountpath" in the container and allow you to run fgallery on it. Just move the output directory to
-mountpath when done, and you'll have the resulting gallery ready to use.
+That will mount "mountpath" in the container and run the conversion script against the photos subfolder
+
+The converted images will be created as a folder called 'website' inside the 'mountpath' folder
