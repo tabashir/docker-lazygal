@@ -1,8 +1,10 @@
 #!/bin/bash
 
-cd "/fgallery/gallery/"
+cd "/gallery/files/"
 
 if [ -d "photos" ]; then
   echo "photos folder exists, running conversion..."
-  /fgallery/fgallery -v photos website
+  mkdir -p website
+  cd website
+  /gallery/lazygal/lazygal.py /gallery/files/photos
 fi
