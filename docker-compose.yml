@@ -1,9 +1,9 @@
 web:
   image: nginx
   volumes:
-	 - ../website:/usr/share/nginx/html:ro
+    - ../website:/usr/share/nginx/html:ro
   ports:
-   - "50090:80"
+    - "50090:80"
   environment:
-   - NGINX_HOST=gallery.mckinley.biz
-   - NGINX_PORT=80
+    - NGINX_HOST=gallery.mckinley.biz
+    - NGINX_PORT=80
