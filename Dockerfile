@@ -7,12 +7,11 @@ RUN apt-get -y update && apt-get -y install \
   fish \
   wget \
   git \
-  python \
-  python2.7 \
-  python-gst-1.0 \
-  python2.7-numpy \
-  python-genshi \
-  python-pil \
+  python3 \
+  python3-gst-1.0 \
+  python3-numpy \
+  python3-genshi \
+  python3-pillow \
   python-libxslt1 \
   python-opencv \
   imagemagick \
