@@ -1,14 +1,37 @@
 FROM ubuntu:trusty
 
 RUN apt-get -y update && apt-get -y install \
-  imagemagick exiftran zip liblcms2-utils libimage-exiftool-perl \
-  libjson-perl libjson-xs-perl jpegoptim pngcrush p7zip \
-  python-opencv libopencv-dev unp unzip fish wget python3-numpy git \
-  gstreamer1.0-plugins-base gstreamer1.0-plugins-good gir1.2-gstreamer-1.0 \
-  gir1.2-gst-plugins-base-1.0 python3-gst-1.0 python3-genshi \
-  libgexiv2-2 libgexiv2-dev python3-pillow python3 \
-  liblocale-msgfmt-perl xsltproc \
-  python-libxslt1 gettext
+  p7zip \
+  unzip \
+  unp \
+  fish \
+  wget \
+  git \
+  python3 \
+  python3-gst-1.0 \
+  python3-numpy \
+  python3-genshi \
+  python3-pillow \
+  python-libxslt1 \
+  python-opencv \
+  imagemagick \
+  exiftran zip \
+  liblcms2-utils \
+  libimage-exiftool-perl \
+  libjson-perl \
+  libjson-xs-perl \
+  jpegoptim \
+  pngcrush \
+  libopencv-dev \
+  gstreamer1.0-plugins-base \
+  gstreamer1.0-plugins-good \
+  gir1.2-gstreamer-1.0 \
+  gir1.2-gst-plugins-base-1.0 \
+  libgexiv2-2 \
+  libgexiv2-dev \
+  liblocale-msgfmt-perl \
+  xsltproc \
+  gettext
 
 WORKDIR /gallery/
 ARG LAZYGAL_VERSION=0.9.2
