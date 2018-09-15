@@ -1,15 +1,21 @@
-FROM ubuntu:trusty
+FROM ubuntu:precise
 
 RUN apt-get -y update
-RUN apt-get -y install imagemagick exiftran zip liblcms2-utils libimage-exiftool-perl libjson-perl libjson-xs-perl jpegoptim pngcrush p7zip python-opencv libopencv-dev unp unzip fish wget python3-numpy git gstreamer1.0-plugins-base gstreamer1.0-plugins-good gir1.2-gstreamer-1.0 gir1.2-gst-plugins-base-1.0 python3-gst-1.0 python3-genshi libgexiv2-2 python3-pillow python3 liblocale-msgfmt-perl xsltproc python-libxslt1 gettext
+RUN apt-get -y install imagemagick exiftran zip liblcms2-utils libimage-exiftool-perl libjson-perl libjson-xs-perl jpegoptim pngcrush p7zip python-opencv libopencv-dev unp unzip fish wget python-numpy
 
-WORKDIR /gallery/
-RUN git clone http://sml.zincube.net/~niol/repositories.git/lazygal lazygal
-RUN mkdir files
+RUN wget --no-check-certificate http://www.thregr.org/~wavexx/software/fgallery/releases/fgallery-LATEST.zip
+RUN unp fgallery-LATEST.zip
+RUN rm fgallery-LATEST.zip
+RUN mv fgallery-* fgallery
 
-VOLUME ["/gallery/files/"]
+VOLUME ["/fgallery/gallery/"]
+WORKDIR /fgallery/
 
-ADD run_conversion.sh /gallery/run_conversion.sh
-RUN chmod +x /gallery/run_conversion.sh
+RUN wget --no-check-certificate https://github.com/wavexx/facedetect/archive/master.zip
+RUN unzip -p master.zip facedetect-master/facedetect > /usr/bin/facedetect
+RUN chmod +x /usr/bin/facedetect
 
-CMD ["/gallery/run_conversion.sh" ]
+ADD run_conversion.sh /fgallery/run_conversion.sh
+RUN chmod +x /fgallery/run_conversion.sh
+
+CMD ["/fgallery/run_conversion.sh" ]
