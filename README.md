@@ -1,24 +1,33 @@
-docker-fgallery
-===============
+docker-lazygal
+==============
 
-A Dockerfile for installing fgallery.
+A Dockerfile for generating LazyGal galleries
 
-fgallery is a static image gallery generation script, it takes images from a directory and generates a static HTML page
-with the images displayed in a slideshow. It can be found at:
+https://sml.zincube.net/~niol/repositories.git/lazygal/about/
 
-Forked from: http://www.thregr.org/~wavexx/software/fgallery/
 
 Usage
 -----
 
-To use this image:
+Make a folder (I refer to it here as $WORKSPACE)
 
-* create a folder (we'll refer to it as 'mountpath')
-* copy your images folder into there as a subfolder called 'photos' (case sensitive)
-* run:
-    docker build -t fgallery-builder .
-    docker run -i -v <mountpath>:/fgallery/gallery/ -t fgallery-builder
+Into this folder, checkout this repo and your photos so you have:
 
-That will mount "mountpath" in the container and run the conversion script against the photos subfolder
+workspace/
+  docker-lazygal
+  photos
 
-The converted images will be created as a folder called 'website' inside the 'mountpath' folder
+cd ${WORKSPACE}/docker-lazygal
+
+docker build -t lazygal-builder .
+
+docker run -t -v "${WORKSPACE}":/gallery/files lazygal-builder
+
+This will create a folder called 'website'. It will take a long time to run if you have a lot of images.
+
+Then serve your files with:
+
+docker-compose up -d
+
+
+
