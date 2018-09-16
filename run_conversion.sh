@@ -9,5 +9,5 @@ if [ -d "photos" ]; then
   echo "photos folder exists, running conversion..."
   mkdir -p website
   cd website
-  python3 /gallery/lazygal/lazygal.py --subgal-sort-by=exif --make-dir-zip --original --output-directory=/gallery/files/website /gallery/files/photos
+  python3 /gallery/lazygal/lazygal.py --subgal-sort-by=exif:reverse --make-dir-zip --original --output-directory=/gallery/files/website /gallery/files/photos
 fi
